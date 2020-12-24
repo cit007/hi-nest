@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Movie } from './entities/movie.entity';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 
 // make fake db
 @Injectable()
@@ -29,7 +30,7 @@ export class MoviesService {
     this.movies.push({ id: this.movies.length + 1, ...movieData });
   }
 
-  udpate(id: number, updateData) {
+  udpate(id: number, updateData: UpdateMovieDto) {
     const movie = this.getOne(id);
     this.deleteOne(id);
     this.create({ ...movie, ...updateData });
